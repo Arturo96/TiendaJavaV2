@@ -1,0 +1,41 @@
+header {
+
+    li {
+        @media screen and (min-width: 992px) {
+            margin-right: 0.75rem;
+        }
+        
+        @media screen and (max-width: 992px) {
+            text-align: center !important;
+        }
+        
+        &:last-of-type {
+            margin-right: initial;
+        }
+    }
+    
+    a {
+        transition: all .5s;
+
+        &:hover {
+            color: var(--hover-link) !important;
+        }
+    }
+    
+    input {
+        flex: auto;
+        
+        @media screen and (max-width: 576px) {
+            margin-top: 0.75rem;
+        }
+    }
+
+
+
+}
+
+.link-brand {
+    font-size: 1.75em;
+    font-weight: bold;
+    padding: 0;
+}

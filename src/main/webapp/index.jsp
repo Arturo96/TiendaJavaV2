@@ -8,12 +8,17 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Proyecto SAGPT</title>
+        
         <jsp:include page="./WEB-INF/components/head.jsp" />
+        <title>Proyecto SAGPT</title>
+        
     </head>
     <body>
         <jsp:include page="./WEB-INF/components/header.jsp" />
-        <h1>Bienvenido a SAGPT!!</h1>
+        <div class="container">
+            <h1>Bienvenido a SAGPT!!</h1>
+        </div>
+        
+        <jsp:include page="./WEB-INF/components/footer.jsp" />
     </body>
 </html>
