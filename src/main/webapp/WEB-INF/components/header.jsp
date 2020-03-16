@@ -18,9 +18,12 @@
                         <a class="nav-link" href="#">Clientes <span class="sr-only">Clientes</span></a>
                     </li>
 
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Compras<span class="sr-only">Compras</span></a>
-                    </li>
+                    <c:if test='${!rol.equals("cliente") && ! empty userLogged}'>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Compras<span class="sr-only">Compras</span></a>
+                        </li>
+                    </c:if>
+
 
                 </ul>
 
@@ -29,7 +32,7 @@
                         <!-- Logged -->
                         <form class="form-inline my-2 my-lg-0 justify-content-center" 
                               method="POST" action="${pageContext.request.contextPath}/ServletUsers">
-                            <label class="user--logged">admin@gmail.com</label>
+                            <label class="user--logged">${userLogged.username}</label>
                             <button name="btnAccion" value="signOut" class="btn btn-outline-info my-2 my-sm-0" type="submit">Sign out</button>
                         </form> 
                     </c:when>
@@ -38,8 +41,8 @@
                         <!-- Login -->
                         <form class="form-inline my-2 my-lg-0" method="POST"
                               action="${pageContext.request.contextPath}/ServletUsers">
-                            <input class="form-control mr-sm-2" type="text" placeholder="Username" >
-                            <input class="form-control mr-sm-2" type="password" placeholder="Password" >
+                            <input name="username" class="form-control mr-sm-2" type="text" placeholder="Username" >
+                            <input name="password" class="form-control mr-sm-2" type="password" placeholder="Password" >
                             <button name="btnAccion" value="signIn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign in</button>
                         </form> 
                     </c:otherwise>

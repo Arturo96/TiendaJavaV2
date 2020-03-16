@@ -65,9 +65,12 @@ public class Usuario implements Serializable {
         this.password = password;
         this.rol = rol;
     }
-    
-    
 
+    public Usuario(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+    
     public Usuario(Integer id, String username, String password) {
         this.id = id;
         this.username = username;
@@ -144,7 +147,9 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Usuario[ id=" + id + " ]";
+        return "Usuario{" + "id=" + id + ", username=" + username + ", password=" + password + ", rol=" + rol + '}';
     }
+
+    
     
 }

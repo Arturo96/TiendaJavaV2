@@ -1,35 +1,49 @@
 :root {
   --hover-link: #05ff3c;
-  --margin-nav-li: 1.75rem; }
+  --margin-nav-li: 1.75rem;
+}
 
 @media screen and (min-width: 992px) {
   header li {
-    margin-right: var(--margin-nav-li); }
-    header li:first-child {
-      margin-left: var(--margin-nav-li); } }
+    margin-right: var(--margin-nav-li);
+  }
+  header li:first-child {
+    margin-left: var(--margin-nav-li);
+  }
+}
 @media screen and (max-width: 992px) {
   header li {
-    text-align: center !important; } }
+    text-align: center !important;
+  }
+}
 header li:last-of-type {
-  margin-right: initial; }
+  margin-right: initial;
+}
 header a {
-  transition: all .5s; }
-  header a:hover {
-    color: var(--hover-link) !important; }
+  transition: all 0.5s;
+}
+header a:hover {
+  color: var(--hover-link) !important;
+}
 header input {
-  flex: auto; }
-  @media screen and (max-width: 576px) {
-    header input {
-      margin-top: 0.75rem; } }
+  flex: auto;
+}
+@media screen and (max-width: 576px) {
+  header input {
+    margin-top: 0.75rem;
+  }
+}
 
 .link-brand {
   font-size: 1.75em;
   font-weight: bold;
-  padding: 0; }
+  padding: 0;
+}
 
 .user--logged {
   color: #fff;
   margin-right: 0.75rem;
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 /*# sourceMappingURL=style.css.map */

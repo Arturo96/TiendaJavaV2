@@ -1,5 +1,5 @@
 
-package data;
+package dao;
 
 import entities.Usuario;
 import java.util.List;

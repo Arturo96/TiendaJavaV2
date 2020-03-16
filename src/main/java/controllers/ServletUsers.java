@@ -1,10 +1,17 @@
 package controllers;
 
+import entities.Usuario;
 import java.io.IOException;
+import java.util.List;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
+import service.IUsuarioService;
 
 public class ServletUsers extends HttpServlet {
+    
+    @Inject
+    private IUsuarioService usuarioService;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -29,8 +36,18 @@ public class ServletUsers extends HttpServlet {
             HttpSession session = request.getSession();
 
             if (accion.equals("signIn")) {
+                
+                String username = request.getParameter("username");
+                String password = request.getParameter("password");
+                
+                Usuario usuario = usuarioService.getUserByCredentials(new Usuario(username, password, null));
+                
+                if(usuario != null) {
+                    session.setAttribute("userLogged", usuario);
+                    session.setAttribute("rol", usuario.getRol().getNombre().toLowerCase());
+                }
 
-                session.setAttribute("userLogged", accion);
+                
             } else {
                 session.setAttribute("userLogged", null);
             }
