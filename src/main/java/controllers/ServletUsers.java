@@ -1,12 +1,8 @@
 package controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 
 public class ServletUsers extends HttpServlet {
 
@@ -33,6 +29,7 @@ public class ServletUsers extends HttpServlet {
             HttpSession session = request.getSession();
 
             if (accion.equals("signIn")) {
+
                 session.setAttribute("userLogged", accion);
             } else {
                 session.setAttribute("userLogged", null);
@@ -41,7 +38,7 @@ public class ServletUsers extends HttpServlet {
         }
 
         String path = "index.jsp";
-        
+
         response.sendRedirect(path);
 
     }
