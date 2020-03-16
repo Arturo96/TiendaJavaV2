@@ -26,24 +26,32 @@
 
 
                 </ul>
+                
+                
+                    <c:if test="${! empty errorLogin}">
+                        <p id="error-login">${errorLogin}</p>
+                    </c:if>         
+                        
+                        <% session.setAttribute("errorLogin", null); %>
+        
 
                 <c:choose>
                     <c:when test="${! empty userLogged}">
                         <!-- Logged -->
                         <form class="form-inline my-2 my-lg-0 justify-content-center" 
                               method="POST" action="${pageContext.request.contextPath}/ServletUsers">
-                            <label class="user--logged">${userLogged.username}</label>
+                            <label class="user--logged">${persona}</label>
                             <button name="btnAccion" value="signOut" class="btn btn-outline-info my-2 my-sm-0" type="submit">Sign out</button>
                         </form> 
                     </c:when>
 
                     <c:otherwise>
                         <!-- Login -->
-                        <form class="form-inline my-2 my-lg-0" method="POST"
+                        <form id="formLogin" class="form-inline my-2 my-lg-0" method="POST"
                               action="${pageContext.request.contextPath}/ServletUsers">
-                            <input name="username" class="form-control mr-sm-2" type="text" placeholder="Username" >
-                            <input name="password" class="form-control mr-sm-2" type="password" placeholder="Password" >
-                            <button name="btnAccion" value="signIn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign in</button>
+                            <input id="username" name="username" class="form-control mr-sm-2" type="text" placeholder="Username" >
+                            <input id="password" name="password" class="form-control mr-sm-2" type="password" placeholder="Password" >
+                            <button name="btnAccion" id="btnLogin" value="signIn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign in</button>
                         </form> 
                     </c:otherwise>
                 </c:choose>

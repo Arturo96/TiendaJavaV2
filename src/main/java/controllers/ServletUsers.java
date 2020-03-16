@@ -1,5 +1,7 @@
 package controllers;
 
+import entities.Cliente;
+import entities.Empleado;
 import entities.Usuario;
 import java.io.IOException;
 import java.util.List;
@@ -45,6 +47,21 @@ public class ServletUsers extends HttpServlet {
                 if(usuario != null) {
                     session.setAttribute("userLogged", usuario);
                     session.setAttribute("rol", usuario.getRol().getNombre().toLowerCase());
+                    
+                    if(usuario.getCliente() != null) {
+                        Cliente cliente = usuario.getCliente();
+                        
+                        session.setAttribute("persona", cliente.getNombres() + " "
+                        + cliente.getApellidos());
+                    } else if (usuario.getEmpleado() != null) {
+                        Empleado empleado = usuario.getEmpleado();
+                        
+                        session.setAttribute("persona", empleado.getNombres() + " "
+                        + empleado.getApellidos());
+                    }
+                    
+                } else {
+                    session.setAttribute("errorLogin", "login");
                 }
 
                 
