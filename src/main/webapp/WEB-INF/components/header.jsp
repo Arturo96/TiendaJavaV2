@@ -1,3 +1,5 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-xl">
@@ -11,30 +13,38 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Productos <span class="sr-only">Productos</span></a>
                     </li>
-                    
+
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Clientes <span class="sr-only">Clientes</span></a>
                     </li>
-                    
+
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Compras<span class="sr-only">Compras</span></a>
                     </li>
-     
+
                 </ul>
-                
-                <!-- Login 
-                <form class="form-inline my-2 my-lg-0" method="POST">
-                    <input class="form-control mr-sm-2" type="email" placeholder="Username" >
-                    <input class="form-control mr-sm-2" type="password" placeholder="Password" >
-                    <button value="signIn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign in</button>
-                </form> -->
-                
-                <!-- Logged -->
-                <form class="form-inline my-2 my-lg-0 justify-content-center" method="POST">
-                    <label class="user--logged">admin@gmail.com</label>
-                    <button value="signOut" class="btn btn-outline-info my-2 my-sm-0" type="submit">Sign out</button>
-                </form> 
-                
+
+                <c:choose>
+                    <c:when test="${! empty userLogged}">
+                        <!-- Logged -->
+                        <form class="form-inline my-2 my-lg-0 justify-content-center" 
+                              method="POST" action="${pageContext.request.contextPath}/ServletUsers">
+                            <label class="user--logged">admin@gmail.com</label>
+                            <button name="btnAccion" value="signOut" class="btn btn-outline-info my-2 my-sm-0" type="submit">Sign out</button>
+                        </form> 
+                    </c:when>
+
+                    <c:otherwise>
+                        <!-- Login -->
+                        <form class="form-inline my-2 my-lg-0" method="POST"
+                              action="${pageContext.request.contextPath}/ServletUsers">
+                            <input class="form-control mr-sm-2" type="text" placeholder="Username" >
+                            <input class="form-control mr-sm-2" type="password" placeholder="Password" >
+                            <button name="btnAccion" value="signIn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign in</button>
+                        </form> 
+                    </c:otherwise>
+                </c:choose>
+
             </div>
         </div>
     </nav>

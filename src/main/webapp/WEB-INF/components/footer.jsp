@@ -1,4 +1,4 @@
-<footer>
+<footer class="container">
     Este es el footer
 </footer>
 
