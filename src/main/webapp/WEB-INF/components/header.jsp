@@ -21,11 +21,20 @@
                     </li>
      
                 </ul>
+                
+                <!-- Login 
                 <form class="form-inline my-2 my-lg-0" method="POST">
                     <input class="form-control mr-sm-2" type="email" placeholder="Username" >
                     <input class="form-control mr-sm-2" type="password" placeholder="Password" >
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign in</button>
-                </form>
+                    <button value="signIn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign in</button>
+                </form> -->
+                
+                <!-- Logged -->
+                <form class="form-inline my-2 my-lg-0 justify-content-center" method="POST">
+                    <label class="user--logged">admin@gmail.com</label>
+                    <button value="signOut" class="btn btn-outline-info my-2 my-sm-0" type="submit">Sign out</button>
+                </form> 
+                
             </div>
         </div>
     </nav>

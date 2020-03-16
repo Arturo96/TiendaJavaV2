@@ -1,19 +1,25 @@
 header {
 
     li {
+
         @media screen and (min-width: 992px) {
-            margin-right: 0.75rem;
+
+            &:first-child {
+                margin-left: var(--margin-nav-li);
+            }
+
+            margin-right: var(--margin-nav-li);
         }
-        
+
         @media screen and (max-width: 992px) {
             text-align: center !important;
         }
-        
+
         &:last-of-type {
             margin-right: initial;
         }
     }
-    
+
     a {
         transition: all .5s;
 
@@ -21,16 +27,14 @@ header {
             color: var(--hover-link) !important;
         }
     }
-    
+
     input {
         flex: auto;
-        
+
         @media screen and (max-width: 576px) {
             margin-top: 0.75rem;
         }
     }
-
-
 
 }
 
@@ -39,3 +43,10 @@ header {
     font-weight: bold;
     padding: 0;
 }
+
+.user--logged {
+    color: #fff;
+    margin-right: 0.75rem;
+    font-weight: bold;
+}
+
