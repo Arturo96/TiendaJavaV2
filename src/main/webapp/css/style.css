@@ -46,4 +46,8 @@ header input {
   font-weight: bold;
 }
 
+.errores {
+  display: none;
+}
+
 /*# sourceMappingURL=style.css.map */

@@ -11,7 +11,7 @@ import javax.servlet.http.*;
 import service.IUsuarioService;
 
 public class ServletUsers extends HttpServlet {
-    
+
     @Inject
     private IUsuarioService usuarioService;
 
@@ -38,34 +38,46 @@ public class ServletUsers extends HttpServlet {
             HttpSession session = request.getSession();
 
             if (accion.equals("signIn")) {
-                
+
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
-                
-                Usuario usuario = usuarioService.getUserByCredentials(new Usuario(username, password, null));
-                
-                if(usuario != null) {
-                    session.setAttribute("userLogged", usuario);
-                    session.setAttribute("rol", usuario.getRol().getNombre().toLowerCase());
-                    
-                    if(usuario.getCliente() != null) {
-                        Cliente cliente = usuario.getCliente();
-                        
-                        session.setAttribute("persona", cliente.getNombres() + " "
-                        + cliente.getApellidos());
-                    } else if (usuario.getEmpleado() != null) {
-                        Empleado empleado = usuario.getEmpleado();
-                        
-                        session.setAttribute("persona", empleado.getNombres() + " "
-                        + empleado.getApellidos());
-                    }
-                    
-                } else {
-                    session.setAttribute("errorLogin", "login");
-                }
+                String error = "";
 
+                if (username.length() == 0) {
+                    error = "Por favor, ingresa el username.";
+                } else if (password.length() == 0) {
+                    error = "Por favor, ingresa la contraseña.";
+                } else {
+                    Usuario usuario = usuarioService.getUserByCredentials(new Usuario(username, password, null));
+
+                    if (usuario != null) {
+                        session.setAttribute("userLogged", usuario);
+                        session.setAttribute("rol", usuario.getRol().getNombre().toLowerCase());
+
+                        if (usuario.getCliente() != null) {
+                            Cliente cliente = usuario.getCliente();
+
+                            session.setAttribute("persona", cliente.getNombres() + " "
+                                    + cliente.getApellidos());
+                        } else if (usuario.getEmpleado() != null) {
+                            Empleado empleado = usuario.getEmpleado();
+
+                            session.setAttribute("persona", empleado.getNombres() + " "
+                                    + empleado.getApellidos());
+                        }
+
+                    } else {
+                        error = "El usuario o la contraseña no son correctos.";
+                    }
+                }
                 
+                if(!error.equals("")) { 
+                    session.setAttribute("errorLogin", error);
+                } 
+                
+
             } else {
+                // Cerrar sesión
                 session.setAttribute("userLogged", null);
             }
 

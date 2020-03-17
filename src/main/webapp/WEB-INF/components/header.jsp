@@ -28,11 +28,13 @@
                 </ul>
                 
                 
+                <div class="errores">
                     <c:if test="${! empty errorLogin}">
                         <p id="error-login">${errorLogin}</p>
-                    </c:if>         
+                    </c:if>    
+                </div>
                         
-                        <% session.setAttribute("errorLogin", null); %>
+                <% session.setAttribute("errorLogin", null); %>
         
 
                 <c:choose>
