@@ -1,6 +1,23 @@
 :root {
   --hover-link: #05ff3c;
   --margin-nav-li: 1.75rem;
+  --fs-description: 1.25em;
+}
+@media screen and (min-width: 500px) {
+  :root {
+    --fs-description: 1.4em;
+  }
+}
+@media screen and (min-width: 992px) {
+  :root {
+    --fs-description: 1.5em;
+  }
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (min-width: 992px) {
@@ -48,6 +65,24 @@ header input {
 
 .errores {
   display: none;
+}
+
+.description {
+  word-spacing: 5px;
+  margin-top: 2rem;
+  font-size: var(--fs-description);
+}
+
+.footer-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer-container h4 {
+  text-align: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 
 /*# sourceMappingURL=style.css.map */

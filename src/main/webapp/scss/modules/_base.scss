@@ -1,4 +1,19 @@
 :root {
     --hover-link: #05ff3c;
     --margin-nav-li: 1.75rem;
+    --fs-description: 1.25em;
+    
+    @media screen and (min-width: 500px) {
+        --fs-description: 1.4em;
+    }
+    
+    @media screen and (min-width: 992px) {
+        --fs-description: 1.5em;
+    }
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
