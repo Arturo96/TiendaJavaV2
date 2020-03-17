@@ -72,6 +72,38 @@ INSERT INTO `EMPLEADO` VALUES (1,'Carlos Arturo','Vargas'),(2,'Manuel','Villegas
 UNLOCK TABLES;
 
 --
+-- Table structure for table `PRODUCTO`
+--
+
+DROP TABLE IF EXISTS `PRODUCTO`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `PRODUCTO` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `tipoProducto` int NOT NULL,
+  `modelo` varchar(100) NOT NULL,
+  `marca` varchar(50) NOT NULL,
+  `descripcion` mediumtext NOT NULL,
+  `precio` double NOT NULL,
+  `fechaGarantia` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `modelo_UNIQUE` (`modelo`),
+  KEY `fk_PRODUCTO_TIPOPRODUCTO_idx` (`tipoProducto`),
+  CONSTRAINT `fk_PRODUCTO_TIPOPRODUCTO` FOREIGN KEY (`tipoProducto`) REFERENCES `TIPOPRODUCTO` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `PRODUCTO`
+--
+
+LOCK TABLES `PRODUCTO` WRITE;
+/*!40000 ALTER TABLE `PRODUCTO` DISABLE KEYS */;
+INSERT INTO `PRODUCTO` VALUES (6,1,'Redmi Note 5','Xiaomi','RAM:4 GB;Almacenamiento: 64 GB; Procesador: Qualcomm Snapdragon 636;',450000,'2020-03-17 17:23:54');
+/*!40000 ALTER TABLE `PRODUCTO` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `ROL`
 --
 
@@ -94,6 +126,30 @@ LOCK TABLES `ROL` WRITE;
 /*!40000 ALTER TABLE `ROL` DISABLE KEYS */;
 INSERT INTO `ROL` VALUES (1,'Administrador'),(3,'Auditor'),(4,'Cliente'),(2,'Vendedor');
 /*!40000 ALTER TABLE `ROL` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `TIPOPRODUCTO`
+--
+
+DROP TABLE IF EXISTS `TIPOPRODUCTO`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `TIPOPRODUCTO` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `TIPOPRODUCTO`
+--
+
+LOCK TABLES `TIPOPRODUCTO` WRITE;
+/*!40000 ALTER TABLE `TIPOPRODUCTO` DISABLE KEYS */;
+INSERT INTO `TIPOPRODUCTO` VALUES (1,'Celulares'),(2,'Auriculares'),(3,'Portatiles'),(4,'Pendrives'),(5,'Micro SD'),(6,'Altavoces');
+/*!40000 ALTER TABLE `TIPOPRODUCTO` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -140,4 +196,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-12 16:06:13
+-- Dump completed on 2020-03-17 17:28:21

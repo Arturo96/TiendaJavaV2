@@ -3,19 +3,21 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-xl">
-            <a class="navbar-brand link-brand" href="#">SAGPT</a>
+            <a class="navbar-brand link-brand" href="${pageContext.request.contextPath}/index.jsp">SAGPT</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Secciones -->
+                
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Productos <span class="sr-only">Productos</span></a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/productos.jsp">Productos <span class="sr-only">Productos</span></a>
                     </li>
 
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Clientes <span class="sr-only">Clientes</span></a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/clientes.jsp">Clientes <span class="sr-only">Clientes</span></a>
                     </li>
 
                     <c:if test='${!rol.equals("cliente") && ! empty userLogged}'>
@@ -23,8 +25,6 @@
                             <a class="nav-link" href="#">Compras<span class="sr-only">Compras</span></a>
                         </li>
                     </c:if>
-
-
                 </ul>
                 
                 
