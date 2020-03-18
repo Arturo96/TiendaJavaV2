@@ -10,8 +10,8 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Secciones -->
-                
-                
+
+
                 <ul class="navbar-nav mr-auto">
                     <!-- Productos -->
                     <li class="nav-item active">
@@ -29,17 +29,21 @@
                             <a class="nav-link" href="#">Compras<span class="sr-only">Compras</span></a>
                         </li>
                     </c:if>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/ServletImagenes">Imágenes<span class="sr-only">Imágenes</span></a>
+                    </li>
                 </ul>
-                
-                
+
+
                 <div class="errores">
                     <c:if test="${! empty errorLogin}">
                         <p id="error-login">${errorLogin}</p>
                     </c:if>    
                 </div>
-                        
-                <% session.setAttribute("errorLogin", null); %>
-        
+
+                <% session.setAttribute("errorLogin", null);%>
+
 
                 <c:choose>
                     <c:when test="${! empty userLogged}">
