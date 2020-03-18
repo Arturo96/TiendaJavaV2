@@ -11,15 +11,19 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Secciones -->
                 
+                
                 <ul class="navbar-nav mr-auto">
+                    <!-- Productos -->
                     <li class="nav-item active">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/productos.jsp">Productos <span class="sr-only">Productos</span></a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/ServletProductos">Productos <span class="sr-only">Productos</span></a>
                     </li>
 
+                    <!-- Clientes -->
                     <li class="nav-item active">
                         <a class="nav-link" href="${pageContext.request.contextPath}/clientes.jsp">Clientes <span class="sr-only">Clientes</span></a>
                     </li>
 
+                    <!-- Compras -->
                     <c:if test='${!rol.equals("cliente") && ! empty userLogged}'>
                         <li class="nav-item active">
                             <a class="nav-link" href="#">Compras<span class="sr-only">Compras</span></a>

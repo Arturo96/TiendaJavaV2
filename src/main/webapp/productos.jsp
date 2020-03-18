@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -10,25 +11,28 @@
 
         <div class="jumbotron mb-0">
             <main class="container">
-
-
                 <section class="productos">
                     <h2 class="display-4 text-center">Nuestros productos</h2>
 
-                    <article class="product row">
-                        <div class="product-img col-md-3">
-                            <img src="${pageContext.request.contextPath}/img/iphone.jpg" alt="Iphone">
-                        </div>
-                        <div class="product-content col-md-9">
-                            <h3 class="product-title">Xiaomi Redmi Note 5</h3>
-                            <div class="product-description">
-                                <p class="product-p">Especificaciones: RAM - 4 GB;
-                                    Procesador Qualcomm Snapdragon 636</p>
+                    <!-- Listado de Productos de la BD -->
+                    <c:forEach var="producto" items="${productos}">
+                        <article class="product row">
+                            <div class="product-img col-md-3">
+                                <img src="${pageContext.request.contextPath}/img/iphone.jpg" alt="Iphone">
                             </div>
-                        </div>
-                    </article>
-                    
+                            <div class="product-content col-md-9">
+                                <h3 class="product-title"><a href="#">${producto.marca} ${producto.modelo}</a></h3>
+                                <div class="product-description">
+                                    <p class="product-p">Especificaciones: ${producto.descripcion}</p>
+                                </div>
+                                <p class="product-price">${producto.precio} COP</p>
+                                <div class="product-inventory">Quedan ${producto.cantidadInv} unidades disponibles!</div>
+                                <button class="btn btn-info mt-4">Ver más</button>
+                            </div>
+                        </article>
 
+                    </c:forEach>
+                    
                 </section>
 
             </main>

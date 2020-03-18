@@ -73,6 +73,21 @@ header input {
   font-size: var(--fs-description);
 }
 
+.product {
+  margin-top: 2rem;
+  border-top: 2px solid #ccc;
+  padding-top: 1em;
+}
+
+.product-price {
+  font-weight: bold;
+  font-size: 1.25em;
+}
+
+.product-title a {
+  transition: all 0.5s;
+}
+
 .footer-container {
   flex-grow: 1;
   display: flex;

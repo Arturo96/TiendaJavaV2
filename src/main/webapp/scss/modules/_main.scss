@@ -6,3 +6,22 @@
     font-size: var(--fs-description);
 }
 
+// Productos.jsp
+
+.product {
+    margin-top: 2rem;
+    border-top: 2px solid #ccc;
+    padding-top: 1em;
+}
+
+.product-price {
+    font-weight: bold;
+    font-size: 1.25em;
+}
+
+.product-title {
+    
+    a {
+      transition: all .5s;  
+    }
+}
