@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Producto.findAll", query = "SELECT p FROM Producto p ORDER BY p.fechaPublicacion DESC"),
+    @NamedQuery(name = "Producto.findAll", query = "SELECT p FROM Producto p"),
     @NamedQuery(name = "Producto.findById", query = "SELECT p FROM Producto p WHERE p.id = :id"),
     @NamedQuery(name = "Producto.findByModelo", query = "SELECT p FROM Producto p WHERE p.modelo = :modelo"),
     @NamedQuery(name = "Producto.findByMarca", query = "SELECT p FROM Producto p WHERE p.marca = :marca"),
@@ -49,6 +49,10 @@ public class Producto implements Serializable {
     @NotNull
     @Size(min = 1, max = 100)
     private String modelo;
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    private byte[] imagen;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -82,9 +86,10 @@ public class Producto implements Serializable {
         this.id = id;
     }
 
-    public Producto(Integer id, String modelo, String marca, String descripcion, double precio, int cantidadInv, int mesesGarantia, Date fechaPublicacion) {
+    public Producto(Integer id, String modelo, byte[] imagen, String marca, String descripcion, double precio, int cantidadInv, int mesesGarantia, Date fechaPublicacion) {
         this.id = id;
         this.modelo = modelo;
+        this.imagen = imagen;
         this.marca = marca;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -107,6 +112,14 @@ public class Producto implements Serializable {
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
+    }
+
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
     }
 
     public String getMarca() {

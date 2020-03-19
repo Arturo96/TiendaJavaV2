@@ -3,6 +3,7 @@ package service;
 
 import dao.IProductoDAO;
 import entities.Producto;
+import entities.Tipoproducto;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -14,9 +15,13 @@ public class ProductoServiceImpl implements IProductoService{
     private IProductoDAO productodao;
 
     @Override
-    
     public List<Producto> getProducts() {
         return productodao.getProducts();
+    }
+    
+    @Override
+    public List<Tipoproducto> getTypeProducts() {
+        return productodao.getTypeProducts();
     }
 
     @Override
@@ -33,5 +38,6 @@ public class ProductoServiceImpl implements IProductoService{
     public void deleteProduct(Producto producto) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     
 }

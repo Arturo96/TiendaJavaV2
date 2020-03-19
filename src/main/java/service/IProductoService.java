@@ -2,6 +2,7 @@
 package service;
 
 import entities.Producto;
+import entities.Tipoproducto;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -9,6 +10,8 @@ import javax.ejb.Local;
 public interface IProductoService {
     
     public List<Producto> getProducts();
+    
+    public List<Tipoproducto> getTypeProducts();
     
     public Producto getProductById(Producto producto);
     

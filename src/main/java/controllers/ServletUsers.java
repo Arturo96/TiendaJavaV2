@@ -79,6 +79,7 @@ public class ServletUsers extends HttpServlet {
             } else {
                 // Cerrar sesión
                 session.setAttribute("userLogged", null);
+                session.setAttribute("rol", null);
             }
 
         }

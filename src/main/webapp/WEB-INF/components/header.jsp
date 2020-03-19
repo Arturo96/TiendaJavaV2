@@ -15,7 +15,7 @@
                 <ul class="navbar-nav mr-auto">
                     <!-- Productos -->
                     <li class="nav-item active">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/ServletProductos">Productos <span class="sr-only">Productos</span></a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/ServletProductos?accion=producto">Productos <span class="sr-only">Productos</span></a>
                     </li>
 
                     <!-- Clientes -->
@@ -27,6 +27,13 @@
                     <c:if test='${!rol.equals("cliente") && ! empty userLogged}'>
                         <li class="nav-item active">
                             <a class="nav-link" href="#">Compras<span class="sr-only">Compras</span></a>
+                        </li>
+                    </c:if>
+                        
+                    <!-- Agregar producto -->
+                    <c:if test='${rol.equals("admin")}'>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/ServletProductos?accion=tipoProducto">Agregar producto<span class="sr-only">Agregar producto</span></a>
                         </li>
                     </c:if>
                 </ul>

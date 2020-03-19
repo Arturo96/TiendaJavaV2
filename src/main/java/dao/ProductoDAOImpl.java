@@ -1,6 +1,7 @@
 package dao;
 
 import entities.Producto;
+import entities.Tipoproducto;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -18,6 +19,11 @@ public class ProductoDAOImpl implements IProductoDAO {
     }
 
     @Override
+    public List<Tipoproducto> getTypeProducts() {
+        return em.createNamedQuery("Tipoproducto.findAll").getResultList();
+    }
+    
+    @Override
     public Producto getProductById(Producto producto) {
         return null;
     }
@@ -31,5 +37,6 @@ public class ProductoDAOImpl implements IProductoDAO {
     public void deleteProduct(Producto producto) {
 
     }
+
 
 }

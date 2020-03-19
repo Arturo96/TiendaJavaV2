@@ -1,4 +1,3 @@
-
 package controllers;
 
 import java.io.IOException;
@@ -12,34 +11,52 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import service.IProductoService;
 
-@WebServlet(name="ServletProductos", urlPatterns={"/ServletProductos"})
+@WebServlet(name = "ServletProductos", urlPatterns = {"/ServletProductos"})
 public class ServletProductos extends HttpServlet {
-    
+
     @Inject
     private IProductoService productoService;
-   
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-    } 
+
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
-        
+
         HttpSession session = request.getSession();
+
+        String accion = request.getParameter("accion");
+        String path = "index.jsp";
+
+        if (accion != null) {
+            switch (accion) {
+                case "producto":
+                    session.setAttribute("productos", productoService.getProducts());
+                    path = "productos.jsp";
+                    break;
+                case "tipoProducto":
+                    session.setAttribute("categorias", productoService.getTypeProducts());
+                    path = "agregarProducto.jsp";
+                    break;
+                default: 
+                    break;
+                    
+            }
+
+        } 
         
-        session.setAttribute("productos", productoService.getProducts());
-        System.out.println(productoService.getProducts());
-        
-        response.sendRedirect("productos.jsp");
-    } 
+        response.sendRedirect(path);
+
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
