@@ -15,6 +15,8 @@ public interface IProductoService {
     
     public Producto getProductById(Producto producto);
     
+    public Tipoproducto getCategoryById(Tipoproducto tipoProducto);
+    
     public void updateProduct(Producto producto);
     
     public void deleteProduct(Producto producto);

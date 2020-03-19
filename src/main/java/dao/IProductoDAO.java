@@ -12,6 +12,8 @@ public interface IProductoDAO {
     
     public List<Tipoproducto> getTypeProducts();
     
+    public Tipoproducto getCategoryById(Tipoproducto tipoProducto);
+    
     public Producto getProductById(Producto producto);
     
     public void updateProduct(Producto producto);

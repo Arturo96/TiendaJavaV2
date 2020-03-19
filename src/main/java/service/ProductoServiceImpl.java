@@ -23,6 +23,11 @@ public class ProductoServiceImpl implements IProductoService{
     public List<Tipoproducto> getTypeProducts() {
         return productodao.getTypeProducts();
     }
+    
+    @Override
+    public Tipoproducto getCategoryById(Tipoproducto tipoProducto) {
+        return productodao.getCategoryById(tipoProducto);
+    }
 
     @Override
     public Producto getProductById(Producto producto) {
@@ -38,6 +43,8 @@ public class ProductoServiceImpl implements IProductoService{
     public void deleteProduct(Producto producto) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
 
     
 }

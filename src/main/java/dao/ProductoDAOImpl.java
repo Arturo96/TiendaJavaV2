@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 @Stateless
 public class ProductoDAOImpl implements IProductoDAO {
@@ -18,9 +19,15 @@ public class ProductoDAOImpl implements IProductoDAO {
         return em.createNamedQuery("Producto.findAll").getResultList();
     }
 
+    
     @Override
     public List<Tipoproducto> getTypeProducts() {
         return em.createNamedQuery("Tipoproducto.findAll").getResultList();
+    }
+    
+    @Override
+    public Tipoproducto getCategoryById(Tipoproducto tipoProducto) {
+        return em.find(Tipoproducto.class, tipoProducto.getId());
     }
     
     @Override
@@ -37,6 +44,7 @@ public class ProductoDAOImpl implements IProductoDAO {
     public void deleteProduct(Producto producto) {
 
     }
+
 
 
 }

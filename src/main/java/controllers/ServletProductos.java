@@ -1,7 +1,10 @@
 package controllers;
 
+import entities.Tipoproducto;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -58,11 +61,56 @@ public class ServletProductos extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+       
+        String path = "agregarProducto.jsp";
+        
+        // Arreglo de errores
+        
+        List<String> errores = new ArrayList();
+        
+        // Validar campos
+        
+        // Tipo de producto
+        
+        String tipoProductoString = request.getParameter("tipoProducto");
+        int idTipoProducto;
+        if (isNumeric(tipoProductoString)) {
+            idTipoProducto = Integer.parseInt(tipoProductoString);
+            Tipoproducto categoria = productoService.getCategoryById
+                                        (new Tipoproducto(idTipoProducto));
+            if (idTipoProducto <= 0 || categoria == null) {
+                errores.add("Ingresa un tipo de producto válido.");
+            } 
+        } else {
+            errores.add("Ingresa un tipo de producto válido.");
+        }
+        
+        HttpSession session = request.getSession();
+        
+        // Validar si hubieron errores
+        
+        if (errores.size() > 0) {
+            session.setAttribute("errores", errores);
+        }
+        
+        response.sendRedirect(path);
+        
     }
 
     @Override
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
+    public boolean isNumeric(String dato) {
+        int numero;
+        try {
+            numero = Integer.parseInt(dato);
+            return true;
+        } catch (NumberFormatException ex) {
+            return false;
+        }
+        
+    }
 
 }

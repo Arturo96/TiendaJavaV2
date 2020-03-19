@@ -11,7 +11,6 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Secciones -->
                 
-                
                 <ul class="navbar-nav mr-auto">
                     <!-- Productos -->
                     <li class="nav-item active">
@@ -39,7 +38,7 @@
                 </ul>
                 
                 
-                <div class="errores">
+                <div class="errores-login">
                     <c:if test="${! empty errorLogin}">
                         <p id="error-login">${errorLogin}</p>
                     </c:if>    
