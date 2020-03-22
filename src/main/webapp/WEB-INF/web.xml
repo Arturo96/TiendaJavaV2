@@ -4,9 +4,17 @@
         <servlet-name>ServletUsers</servlet-name>
         <servlet-class>controllers.ServletUsers</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletImagenes</servlet-name>
+        <servlet-class>controllers.ServletImagenes</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletUsers</servlet-name>
         <url-pattern>/ServletUsers</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletImagenes</servlet-name>
+        <url-pattern>/ServletImagenes</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

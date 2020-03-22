@@ -49,8 +49,6 @@ public class Producto implements Serializable {
     @NotNull
     @Size(min = 1, max = 100)
     private String modelo;
-    @Basic(optional = false)
-    @NotNull
     @Lob
     private byte[] imagen;
     @Basic(optional = false)
@@ -86,8 +84,7 @@ public class Producto implements Serializable {
         this.id = id;
     }
 
-    public Producto(Integer id, String modelo, byte[] imagen, String marca, String descripcion, double precio, int cantidadInv, int mesesGarantia, Date fechaPublicacion) {
-        this.id = id;
+    public Producto(String modelo, byte[] imagen, String marca, String descripcion, double precio, int cantidadInv, int mesesGarantia, Date fechaPublicacion, Tipoproducto tipoProducto) {
         this.modelo = modelo;
         this.imagen = imagen;
         this.marca = marca;
@@ -96,8 +93,11 @@ public class Producto implements Serializable {
         this.cantidadInv = cantidadInv;
         this.mesesGarantia = mesesGarantia;
         this.fechaPublicacion = fechaPublicacion;
+        this.tipoProducto = tipoProducto;
     }
 
+   
+    
     public Integer getId() {
         return id;
     }

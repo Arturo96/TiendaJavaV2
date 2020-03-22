@@ -31,20 +31,24 @@ public class ProductoServiceImpl implements IProductoService{
 
     @Override
     public Producto getProductById(Producto producto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return productodao.getProductById(producto);
     }
 
     @Override
+    public void addProduct(Producto producto) {
+        productodao.addProduct(producto);
+    }
+    
+    @Override
     public void updateProduct(Producto producto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        productodao.updateProduct(producto);
     }
 
     @Override
     public void deleteProduct(Producto producto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        productodao.deleteProduct(producto);
     }
 
-    
 
     
 }

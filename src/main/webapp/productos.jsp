@@ -18,7 +18,7 @@
                     <c:forEach var="producto" items="${productos}">
                         <article class="product row">
                             <div class="product-img col-md-3">
-                                <img src="${pageContext.request.contextPath}/img/iphone.jpg" alt="Iphone">
+                                <img class="img-fluid" src="${pageContext.request.contextPath}/ServletImagenes?id=${producto.id}" >
                             </div>
                             <div class="product-content col-md-9">
                                 <h3 class="product-title"><a href="#">${producto.marca} ${producto.modelo}</a></h3>

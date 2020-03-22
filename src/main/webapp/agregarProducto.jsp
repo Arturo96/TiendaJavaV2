@@ -19,7 +19,8 @@
                 <h2 class="display-4 text-center">Inserción de productos</h2>
 
                 <form action="${pageContext.request.contextPath}/ServletProductos"
-                      class="frmAddProduct mx-auto" method="POST">
+                      class="frmAddProduct mx-auto was-validated" method="POST"
+                      enctype="multipart/form-data">
 
                     <!-- Tipo de Producto -->
                     <div class="form-group">
@@ -34,7 +35,7 @@
                     <!-- Modelo -->
                     <div class="form-group">
                         <label for="modelo">Modelo: </label>
-                        <input id="modelo" name="modelo" class="form-control" type="text">
+                        <input id="modelo" name="modelo" class="form-control" type="text" required>
                     </div>
 
                     <!-- Imagen -->
@@ -46,32 +47,32 @@
                     <!-- Marca -->
                     <div class="form-group">
                         <label for="marca">Marca: </label>
-                        <input id="marca" name="marca" class="form-control" type="text">
+                        <input id="marca" name="marca" class="form-control" type="text" required>
                     </div>
 
                     <!-- Descripción -->
                     <div class="form-group">
                         <label for="descripcion">Descripción: </label>
                         <textarea class="form-control" rows="5" id="descripcion" 
-                                  name="descripcion"></textarea>
+                                  name="descripcion" required></textarea>
                     </div>
 
                     <!-- Precio -->
                     <div class="form-group">
                         <label for="precio">Precio: </label>
-                        <input id="precio" name="precio" class="form-control" type="text">
+                        <input id="precio" name="precio" class="form-control" min="100" type="number" required>
                     </div>
 
                     <!-- Cantidad en Inventario -->
                     <div class="form-group">
                         <label for="cantidadInv">Cantidad en Inventario: </label>
-                        <input id="cantidadInv" name="cantidadInv" class="form-control" type="text">
+                        <input id="cantidadInv" name="cantidadInv" class="form-control" min="0" type="number" required>
                     </div>
 
                     <!-- Tiempo de Garantia (Meses) -->
                     <div class="form-group">
                         <label for="mesesGarantia">Tiempo de Garantia (Meses): </label>
-                        <input id="mesesGarantia" name="mesesGarantia" class="form-control" type="text">
+                        <input id="mesesGarantia" name="mesesGarantia" class="form-control" min="0" type="number" required>
                     </div>
 
                     <c:if test="${! empty errores}">
