@@ -44,7 +44,8 @@ public class ServletProductos extends HttpServlet {
         if (accion != null) {
             switch (accion) {
                 case "producto":
-                    session.setAttribute("productos", productoService.getProducts());
+                    List<Producto> listaProductos = productoService.getProducts();
+                    session.setAttribute("productos", listaProductos);
                     path = "productos.jsp";
                     break;
                 case "tipoProducto":
@@ -119,7 +120,8 @@ public class ServletProductos extends HttpServlet {
                 } else {
                     // es un campo de formulario, podemos obtener clave y valor
                     String key = uploaded.getFieldName();
-                    String valor = uploaded.getString();
+                    // Codificamos el valor en UTF-8 para posteriormente recibirlo
+                    String valor = new String (uploaded.getString().getBytes("iso-8859-1"), "UTF-8");
 
                     switch (key) {
                         // Tipo de producto
@@ -159,6 +161,7 @@ public class ServletProductos extends HttpServlet {
                         case "descripcion":
                             // descripcion
                             descripcion = valor;
+                            descripcion = descripcion.replace("\r\n", "<br>");
                             break;
 
                         case "precio":
