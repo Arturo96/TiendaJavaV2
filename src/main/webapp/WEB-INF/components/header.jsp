@@ -29,12 +29,6 @@
                         </li>
                     </c:if>
                         
-                    <!-- Agregar producto -->
-                    <c:if test='${rol.equals("admin")}'>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="${pageContext.request.contextPath}/ServletProductos?accion=tipoProducto">Agregar producto<span class="sr-only">Agregar producto</span></a>
-                        </li>
-                    </c:if>
                 </ul>
                 
                 

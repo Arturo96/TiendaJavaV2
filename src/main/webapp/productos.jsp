@@ -14,6 +14,11 @@
                 <section class="productos">
                     <h2 class="display-4 text-center">Nuestros productos</h2>
 
+                    <!-- Agregar Producto -->
+                    <c:if test='${rol.equals("admin")}'>
+                        <a href="${pageContext.request.contextPath}/ServletProductos?accion=tipoProducto" class="btn btn-info">Agregar producto</a>
+                    </c:if>
+
                     <!-- Listado de Productos de la BD -->
                     <c:forEach var="producto" items="${productos}">
                         <article class="product row">
@@ -27,12 +32,22 @@
                                 </div>
                                 <p class="product-price">${producto.precio} COP</p>
                                 <div class="product-inventory">Quedan ${producto.cantidadInv} unidades disponibles!</div>
+
+                                <c:if test='${rol.equals("admin")}'>
+                                    <a class="btn btn-primary mt-4" 
+                                       href="${pageContext.request.contextPath}/ServletProductos?accion=editarProducto&id=${producto.id}">
+                                        Editar
+                                    </a>
+                                    <a class="btn btn-danger mt-4" href="#">
+                                        Eliminar
+                                    </a>
+                                </c:if>
                                 <button class="btn btn-info mt-4">Ver más</button>
                             </div>
                         </article>
 
                     </c:forEach>
-                    
+
                 </section>
 
             </main>

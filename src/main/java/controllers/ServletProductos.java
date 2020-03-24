@@ -52,6 +52,23 @@ public class ServletProductos extends HttpServlet {
                     session.setAttribute("categorias", productoService.getTypeProducts());
                     path = "agregarProducto.jsp";
                     break;
+                case "editarProducto":
+                    String idProducto = request.getParameter("id");
+                    path = "index.jsp";
+                    if (isNumeric(idProducto)) {
+                        int id = Integer.parseInt(idProducto);
+                        Producto producto = productoService.getProductById(new Producto(id));
+                        
+                        if(producto != null) {
+                            session.setAttribute("categorias", productoService.getTypeProducts());
+                            session.setAttribute("producto", producto);
+                            path = "editarProducto.jsp";
+                        }
+                    }
+
+                    break;
+                case "borrarProducto":
+                    break;
                 default:
                     break;
 
@@ -121,7 +138,7 @@ public class ServletProductos extends HttpServlet {
                     // es un campo de formulario, podemos obtener clave y valor
                     String key = uploaded.getFieldName();
                     // Codificamos el valor en UTF-8 para posteriormente recibirlo
-                    String valor = new String (uploaded.getString().getBytes("iso-8859-1"), "UTF-8");
+                    String valor = new String(uploaded.getString().getBytes("iso-8859-1"), "UTF-8");
 
                     switch (key) {
                         // Tipo de producto
