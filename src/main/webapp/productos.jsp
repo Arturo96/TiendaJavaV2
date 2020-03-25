@@ -38,7 +38,7 @@
                                        href="${pageContext.request.contextPath}/ServletProductos?accion=editarProducto&id=${producto.id}">
                                         Editar
                                     </a>
-                                    <a class="btn btn-danger mt-4" href="#">
+                                    <a class="btn btn-danger mt-4" href="${pageContext.request.contextPath}/ServletProductos?accion=borrarProducto&id=${producto.id}">
                                         Eliminar
                                     </a>
                                 </c:if>

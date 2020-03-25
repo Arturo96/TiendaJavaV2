@@ -49,6 +49,4 @@ public class ProductoServiceImpl implements IProductoService{
         productodao.deleteProduct(producto);
     }
 
-
-    
 }

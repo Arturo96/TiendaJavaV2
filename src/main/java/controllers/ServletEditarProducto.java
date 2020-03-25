@@ -11,20 +11,17 @@ import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import service.IProductoService;
 
-@WebServlet(name = "ServletProductos", urlPatterns = {"/ServletProductos"})
-public class ServletProductos extends HttpServlet {
+public class ServletEditarProducto extends HttpServlet {
 
     @Inject
     private IProductoService productoService;
@@ -32,74 +29,13 @@ public class ServletProductos extends HttpServlet {
     private final List<String> errores = new ArrayList();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-
-        HttpSession session = request.getSession();
-
-        String idProducto;
-        
-        String accion = request.getParameter("accion");
-        String path = "index.jsp";
-
-        if (accion != null) {
-            switch (accion) {
-                case "producto":
-                    List<Producto> listaProductos = productoService.getProducts();
-                    session.setAttribute("productos", listaProductos);
-                    path = "productos.jsp";
-                    break;
-                case "tipoProducto":
-                    session.setAttribute("categorias", productoService.getTypeProducts());
-                    path = "agregarProducto.jsp";
-                    break;
-                case "editarProducto":
-                    idProducto = request.getParameter("id");
-                    path = "index.jsp";
-                    if (isNumeric(idProducto)) {
-                        int id = Integer.parseInt(idProducto);
-                        Producto producto = productoService.getProductById(new Producto(id));
-                        
-                        if(producto != null) {
-                            session.setAttribute("categorias", productoService.getTypeProducts());
-                            session.setAttribute("producto", producto);
-                            path = "editarProducto.jsp";
-                        }
-                    }
-                    break;
-                case "borrarProducto":
-                    idProducto = request.getParameter("id");
-                    path = "index.jsp";
-                    if (isNumeric(idProducto)) {
-                        int id = Integer.parseInt(idProducto);
-                        Producto producto = productoService.getProductById(new Producto(id));
-                        
-                        if(producto != null) {
-                            productoService.deleteProduct(producto);
-                            session.setAttribute("productos", productoService.getProducts());
-                            path = "productos.jsp";
-                        }
-                    }
-                    break;
-                default:
-                    break;
-
-            }
-
-        }
-
-        response.sendRedirect(path);
-
-    }
-
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        String path = "agregarProducto.jsp";
+        String path = "editarProducto.jsp";
 
+        int idProducto = 0;
         int idTipoProducto = 0;
         String modelo = null;
         String marca = null;
@@ -154,11 +90,19 @@ public class ServletProductos extends HttpServlet {
                     String valor = new String(uploaded.getString().getBytes("iso-8859-1"), "UTF-8");
 
                     switch (key) {
-                        // Tipo de producto
 
+                        // Id del Producto
+                        case "idProducto":
+                            String idProductoString = valor;
+                            if (isNumeric(idProductoString, false)) {
+                                idProducto = Integer.parseInt(idProductoString);
+                            }
+                            break;
+
+                        // Tipo de producto
                         case "tipoProducto":
                             String tipoProductoString = valor;
-                            if (isNumeric(tipoProductoString)) {
+                            if (isNumeric(tipoProductoString, false)) {
                                 idTipoProducto = Integer.parseInt(tipoProductoString);
                                 Tipoproducto categoria = productoService.getCategoryById(new Tipoproducto(idTipoProducto));
                                 if (idTipoProducto <= 0 || categoria == null) {
@@ -197,7 +141,7 @@ public class ServletProductos extends HttpServlet {
                         case "precio":
                             // Precio
                             String precioString = valor;
-                            if (validarDatosNumericos(precioString, "precio")) {
+                            if (validarDatosNumericos(precioString, "precio", true)) {
                                 precio = Double.parseDouble(precioString);
                             }
 
@@ -207,7 +151,7 @@ public class ServletProductos extends HttpServlet {
 
                             // Cantidad en Inventario
                             String cantidadInvString = valor;
-                            if (validarDatosNumericos(cantidadInvString, "inventario")) {
+                            if (validarDatosNumericos(cantidadInvString, "inventario", false)) {
                                 cantidadInv = Integer.parseInt(cantidadInvString);
                             }
 
@@ -217,7 +161,7 @@ public class ServletProductos extends HttpServlet {
 
                             // Tiempo de garantía
                             String mesesGarantiaString = valor;
-                            if (validarDatosNumericos(mesesGarantiaString, "garantia")) {
+                            if (validarDatosNumericos(mesesGarantiaString, "garantia", false)) {
                                 mesesGarantia = Integer.parseInt(mesesGarantiaString);
                             }
                             break;
@@ -236,17 +180,30 @@ public class ServletProductos extends HttpServlet {
         if (errores.size() > 0) {
             session.setAttribute("errores", errores);
         } else {
-            // Insertamos el producto en la base de datos
+            // Actualizamos el producto en la base de datos
 
             Tipoproducto tp = productoService.getCategoryById(new Tipoproducto(idTipoProducto));
 
-            Producto producto = new Producto(modelo, buffer, marca, descripcion,
-                    precio, cantidadInv, mesesGarantia, new Date(), tp);
+            Producto producto;
 
-            productoService.addProduct(producto);
+            if (idProducto > 0) {
+                if (buffer == null) {
+                    Producto productoExistente = productoService.getProductById(new Producto(idProducto));
+                    
+                    producto = new Producto(idProducto, modelo, productoExistente.getImagen(), marca, descripcion,
+                            precio, cantidadInv, mesesGarantia, new Date(), tp);
+                    
+                   
+                } else {
+                    producto = new Producto(idProducto, modelo, buffer, marca, descripcion,
+                            precio, cantidadInv, mesesGarantia, new Date(), tp);
+                }
 
-            session.setAttribute("productos", productoService.getProducts());
-            path = "productos.jsp";
+                productoService.updateProduct(producto);
+
+                session.setAttribute("productos", productoService.getProducts());
+                path = "productos.jsp";
+            }
 
         }
 
@@ -254,10 +211,15 @@ public class ServletProductos extends HttpServlet {
 
     }
 
-    protected boolean isNumeric(String dato) {
-        int numero;
+    protected boolean isNumeric(String dato, boolean esPrecio) {
+        int numeroEntero;
+        double numeroDecimal;
         try {
-            numero = Integer.parseInt(dato);
+            if (esPrecio) {
+                numeroDecimal = Double.parseDouble(dato);
+            } else {
+                numeroEntero = Integer.parseInt(dato);
+            }
             return true;
         } catch (NumberFormatException ex) {
             return false;
@@ -265,11 +227,11 @@ public class ServletProductos extends HttpServlet {
 
     }
 
-    protected boolean validarDatosNumericos(String dato, String campo) {
+    protected boolean validarDatosNumericos(String dato, String campo, boolean esPrecio) {
 
         String error;
 
-        if (isNumeric(dato)) {
+        if (isNumeric(dato, esPrecio)) {
             if (campo.equals("precio")) {
                 double precio = Double.parseDouble(dato);
                 if (precio < 100) {

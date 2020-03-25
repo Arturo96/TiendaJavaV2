@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entities;
 
 import java.io.Serializable;
@@ -23,10 +19,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author arturo-soporte
- */
 @Entity
 @XmlRootElement
 @NamedQueries({
@@ -96,6 +88,41 @@ public class Producto implements Serializable {
         this.tipoProducto = tipoProducto;
     }
 
+    public Producto(String modelo, String marca, String descripcion, double precio, int cantidadInv, int mesesGarantia, Date fechaPublicacion, Tipoproducto tipoProducto) {
+        this.modelo = modelo;
+        this.marca = marca;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.cantidadInv = cantidadInv;
+        this.mesesGarantia = mesesGarantia;
+        this.fechaPublicacion = fechaPublicacion;
+        this.tipoProducto = tipoProducto;
+    }
+    
+    public Producto(Integer id, String modelo, byte[] imagen, String marca, String descripcion, double precio, int cantidadInv, int mesesGarantia, Date fechaPublicacion, Tipoproducto tipoProducto) {
+        this.id = id;
+        this.modelo = modelo;
+        this.imagen = imagen;
+        this.marca = marca;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.cantidadInv = cantidadInv;
+        this.mesesGarantia = mesesGarantia;
+        this.fechaPublicacion = fechaPublicacion;
+        this.tipoProducto = tipoProducto;
+    }
+
+    public Producto(Integer id, String modelo, String marca, String descripcion, double precio, int cantidadInv, int mesesGarantia, Date fechaPublicacion, Tipoproducto tipoProducto) {
+        this.id = id;
+        this.modelo = modelo;
+        this.marca = marca;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.cantidadInv = cantidadInv;
+        this.mesesGarantia = mesesGarantia;
+        this.fechaPublicacion = fechaPublicacion;
+        this.tipoProducto = tipoProducto;
+    }
    
     
     public Integer getId() {

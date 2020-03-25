@@ -16,11 +16,14 @@
 
         <div class="jumbotron mb-0">
             <main class="container">
-                <h2 class="display-4 text-center">Inserción de productos</h2>
+                <h2 class="display-4 text-center">Edición de productos</h2>
 
-                <form action="${pageContext.request.contextPath}/ServletProductos"
+                <form action="${pageContext.request.contextPath}/ServletEditarProducto"
                       class="frmAddProduct mx-auto was-validated" method="POST"
                       enctype="multipart/form-data">
+                    
+                    <!-- Id -->
+                    <input type="hidden" value="${producto.id}" name="idProducto">
 
                     <!-- Tipo de Producto -->
                     <div class="form-group">
@@ -87,7 +90,7 @@
 
                     <% session.setAttribute("errores", null); %>
 
-                    <button type="submit" name="add" class="btn btn-primary w-75 d-block mt-4 mx-auto" >Ingresar producto</button>
+                    <button type="submit" name="edit" class="btn btn-primary w-75 d-block mt-4 mx-auto" >Editar producto</button>
                 </form>
 
             </main>
