@@ -68,6 +68,7 @@ public class ServletProductos extends HttpServlet {
                         }
                     }
                     break;
+                    
                 case "borrarProducto":
                     idProducto = request.getParameter("id");
                     path = "index.jsp";
