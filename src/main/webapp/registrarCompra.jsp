@@ -31,26 +31,33 @@
                 </select>
             </div> -->
 
-                    <!-- Producto -->
-                    <div class="form-group">
-                        <label for="producto1">Producto: </label>
-                        <select class="form-control" name="producto1" id="producto1">
-                            <c:forEach var="producto" items="${productos}">
-                                <option value="${producto.id}">${producto.modelo}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
 
-                    <!-- Cantidad a comprar -->
-                    <div id="cantidades" class="cantidades">
-                        <div class="form-group" id="cantidad1">
-                            <label>Cantidad en Inventario: </label>
-                            <input name="cantidad1" class="cantidad form-control" min="1" type="number" required>
-                        </div>  
-                    </div>
-                    
-                    <button type="button" id="btnAdd" class="btn btn-info">Agregar cantidad</button>
-                    <button type="button" id="btnDelete" class="btn btn-danger d-none">Eliminar cantidad</button>
+
+                    <!-- Producto -->
+                    <section id="productos">
+                        <div id="producto1" class="producto">
+                            <!-- Modelo -->
+                            <div class="form-group">
+                                <label>Producto: </label>
+                                <select class="form-control" name="modelo1" id="modelo1">
+                                    <c:forEach var="producto" items="${productos}">
+                                        <option value="${producto.id}">${producto.modelo}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+
+                            <!-- Cantidad a comprar -->
+                            <div class="form-group">
+                                <label>Cantidad en Inventario: </label>
+                                <input name="cantidad1" id="cantidad1" class="form-control" min="1" type="number" required>
+                            </div>  
+                        </div>
+                        
+                        
+                    </section>
+
+                    <button type="button" id="btnAdd" class="btn btn-info">Agregar producto</button>
+                    <button type="button" id="btnDelete" class="btn btn-danger d-none">Eliminar producto</button>
 
                     <!-- Marca 
                     <div class="form-group">
