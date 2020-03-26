@@ -12,6 +12,10 @@
         <servlet-name>ServletEditarProducto</servlet-name>
         <servlet-class>controllers.ServletEditarProducto</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletCompras</servlet-name>
+        <servlet-class>controllers.ServletCompras</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletUsers</servlet-name>
         <url-pattern>/ServletUsers</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>ServletEditarProducto</servlet-name>
         <url-pattern>/ServletEditarProducto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletCompras</servlet-name>
+        <url-pattern>/ServletCompras</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -25,7 +25,7 @@
                     <!-- Compras -->
                     <c:if test='${!rol.equals("cliente") && ! empty userLogged}'>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Compras<span class="sr-only">Compras</span></a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/ServletCompras">Compras<span class="sr-only">Compras</span></a>
                         </li>
                     </c:if>
                         
